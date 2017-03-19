@@ -9,5 +9,4 @@ import numpy as np
 with open('data.csv','rb') as csvfile:
     data = list(csv.reader(csvfile, delimiter=","))
     data = np.array(data[0:])
-    print(data[2,3])
-    # haming_distance()
+    print(data)
