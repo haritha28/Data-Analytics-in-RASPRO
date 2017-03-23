@@ -1,0 +1,4 @@
+Reading a CSV 
+1. read the file and use delimiter.
+2. Read as a list to get the row number
+3. Read simply to get the column number
