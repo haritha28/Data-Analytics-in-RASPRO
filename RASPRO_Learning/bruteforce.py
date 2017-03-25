@@ -2,12 +2,24 @@
 import csv
 import numpy as np
 
-# int hamming_array[]
+hamming_array = []
 
 def hamming_distance(chr1, chr2):
-    diffs = len(chr1)- len(chr2)
-    #print diffs
-    return abs(diffs)
+    n1 = len(chr1)
+    n2 = len(chr2)
+
+    if (n1 != n2):
+        diffs = len(chr1)- len(chr2)
+        return abs(diffs)
+    else:
+        i = 0
+        k = 0
+        while( i < n1):
+            if(chr1[i] != chr2[i]):
+                k = k + 1
+            i = i + 1
+        return k
+
 
 def hloop(data,value):
     add = 0
@@ -22,22 +34,16 @@ def hloop(data,value):
             for j in range(value[1]):
                 trial = hamming_distance(data[k][j], data[i][j])
                 add = add + trial
-                #print add
                 j = j  + 1
             i = i + 1
-        print add
+        hamming_array.append(add)
     k = k + 1
-
+    cm = np.argmin(hamming_array,0)
+    print data[cm]
 
 
 with open('data.csv','rb') as csvfile:
-    # reader1 = csv.reader(csvfile, delimiter=",")
-    # no_cols = len(reader1.next())
     data = list(csv.reader(csvfile, delimiter=","))
-    #no_rows = len(reader2)
     data = np.array(data[0:])
     value = list((np.shape(data)))
-    #no_rows = value[0]
-    #no_columns = value[1]
     hloop(data, value)
-    # print np.apply_along_axis(hloop, 0, data)
